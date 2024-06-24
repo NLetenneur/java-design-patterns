@@ -33,6 +33,13 @@ public class TypeReservation {
 		this.montant = montant;
 		this.reductionPourcent = reductionPourcent;
 	}
+	
+	public double calcTotal(int nbPlaces, Client client) {
+		double total = this.getMontant() * nbPlaces;
+		total = client.applyReduction(total, this);
+		return total;
+		
+	}
 
 	/** Getter
 	 * @return the id
