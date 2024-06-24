@@ -5,6 +5,7 @@ import java.time.LocalDateTime;
 import fr.diginamic.tp_grasps.beans.Client;
 import fr.diginamic.tp_grasps.beans.Params;
 import fr.diginamic.tp_grasps.beans.Reservation;
+import fr.diginamic.tp_grasps.beans.ReservationFactory;
 import fr.diginamic.tp_grasps.beans.TypeReservation;
 import fr.diginamic.tp_grasps.daos.ClientDao;
 import fr.diginamic.tp_grasps.daos.TypeReservationDao;
@@ -50,17 +51,12 @@ public class ReservationController {
 		TypeReservation type = typeReservationDao.extraireTypeReservation(typeReservation);
 
 		// 5) Création de la réservation
-		Reservation reservation = new Reservation(dateReservation);
-		reservation.setNbPlaces(nbPlaces);
-		reservation.setClient(client);
+		Reservation reservation = ReservationFactory.getInstance(client, type, dateReservation, nbPlaces);
 
 		// 6) Ajout de la réservation au client
 		client.getReservations().add(reservation);
 
-		// 7) Calcul du montant total de la réservation qui dépend:
-		// - du nombre de places
-		// - de la réduction qui s'applique si le client est premium ou non
-		reservation.setTotal(type.calcTotal(nbPlaces, client));
+		
 		return reservation;
 	}
 

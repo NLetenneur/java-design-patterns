@@ -12,14 +12,14 @@ public class Client {
 
 	@Id
 	private String identifiantClient;
-	
+
 	private boolean premium;
-	
+
 	@OneToMany(mappedBy = "client")
 	private List<Reservation> reservations = new ArrayList<>();
-	
+
 	public Client() {
-		
+
 	}
 
 	public Client(String identifiantClient, boolean premium) {
@@ -28,42 +28,54 @@ public class Client {
 		this.premium = premium;
 	}
 
-	/** Getter
+	/**
+	 * Getter
+	 * 
 	 * @return the identifiantClient
 	 */
 	public String getIdentifiantClient() {
 		return identifiantClient;
 	}
 
-	/** Setter
+	/**
+	 * Setter
+	 * 
 	 * @param identifiantClient the identifiantClient to set
 	 */
 	public void setIdentifiantClient(String identifiantClient) {
 		this.identifiantClient = identifiantClient;
 	}
 
-	/** Getter
+	/**
+	 * Getter
+	 * 
 	 * @return the premium
 	 */
 	public boolean isPremium() {
 		return premium;
 	}
 
-	/** Setter
+	/**
+	 * Setter
+	 * 
 	 * @param premium the premium to set
 	 */
 	public void setPremium(boolean premium) {
 		this.premium = premium;
 	}
 
-	/** Getter
+	/**
+	 * Getter
+	 * 
 	 * @return the reservations
 	 */
 	public List<Reservation> getReservations() {
 		return reservations;
 	}
 
-	/** Setter
+	/**
+	 * Setter
+	 * 
 	 * @param reservations the reservations to set
 	 */
 	public void setReservations(List<Reservation> reservations) {
@@ -72,7 +84,8 @@ public class Client {
 
 	public double applyReduction(double total, TypeReservation type) {
 		if (this.isPremium()) {
-			total=total*(1-type.getReductionPourcent()/100.0);
-		}		return total;
+			total = total * (1 - type.getReductionPourcent() / 100.0);
+		}
+		return total;
 	}
 }
