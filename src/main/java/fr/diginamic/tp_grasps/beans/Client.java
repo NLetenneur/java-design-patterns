@@ -69,4 +69,10 @@ public class Client {
 	public void setReservations(List<Reservation> reservations) {
 		this.reservations = reservations;
 	}
+
+	public double applyReduction(double total, TypeReservation type) {
+		if (this.isPremium()) {
+			total=total*(1-type.getReductionPourcent()/100.0);
+		}		return total;
+	}
 }
