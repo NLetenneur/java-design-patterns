@@ -30,6 +30,7 @@ Produit(String nom, String grade, List<Ingredient> ingredients, List<Additif> ad
 	this.categorie = categorie;
 	this.marque = marque;
 }
+
 @Override
 public String toString() {
 	return "Produit [nom=" + nom + ", grade=" + grade + ", ingredients=" + ingredients + ", additifs=" + additifs
